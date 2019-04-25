@@ -2,7 +2,6 @@ package com.grupo3.taller_tbd.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.grupo3.taller_tbd.entities.Actor;
 import com.grupo3.taller_tbd.repository.ActorRepository;
+
+import java.sql.Timestamp;
 
 @RestController
 @RequestMapping("/actors")
@@ -29,7 +30,8 @@ public class ActorService {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public Actor create(@RequestBody Actor resource) {
-
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        resource.setLastUpdate(time);
         return actorRepository.save(resource);
     }
 }
