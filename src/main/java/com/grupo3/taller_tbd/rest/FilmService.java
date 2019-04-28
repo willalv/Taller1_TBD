@@ -24,6 +24,14 @@ public class FilmService {
         return filmRepository.findAll();
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Film getFilm(@PathVariable Integer id)
+    {
+        Integer filmId = id.intValue();
+        return filmRepository.findFilmById(filmId);
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody

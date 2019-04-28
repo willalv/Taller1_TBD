@@ -13,7 +13,7 @@ public class Film implements Serializable {
 
     @Id
     @Column(name = "film_id", unique = true, nullable = false)
-    private Integer filmId;
+    private Integer id;
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;
@@ -54,12 +54,12 @@ public class Film implements Serializable {
     public Film() {
     }
 
-    public Integer getFilmId() {
-        return filmId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setFilmId(Integer filmId) {
-        this.filmId = filmId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
