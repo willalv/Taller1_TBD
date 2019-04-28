@@ -1,8 +1,12 @@
 package com.grupo3.taller_tbd.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -22,6 +26,18 @@ public class Actor implements Serializable {
 
     @Column(name="last_update", nullable=false)
     private Timestamp lastUpdate;
+
+
+    @ManyToMany(cascade = {CascadeType.ALL})
+    @JsonIgnore
+    @JoinTable(name="film_actor",
+            joinColumns={@JoinColumn(name="actor_id")},
+            inverseJoinColumns={@JoinColumn(name="film_id")})
+    private Set<Film> films =new HashSet<Film>();
+
+    public Set<Film> getFilms() {
+        return films;
+    }
 
     public Actor() {
     }

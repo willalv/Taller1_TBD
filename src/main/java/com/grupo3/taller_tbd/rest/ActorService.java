@@ -1,5 +1,6 @@
 package com.grupo3.taller_tbd.rest;
 
+import com.grupo3.taller_tbd.entities.Film;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.grupo3.taller_tbd.entities.Actor;
 import com.grupo3.taller_tbd.repository.ActorRepository;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/actors")
 public class ActorService {
@@ -23,6 +26,22 @@ public class ActorService {
     @ResponseBody
     public Iterable<Actor> getAllUsers(){
         return actorRepository.findAll();
+    }
+
+    // GET - Actor por actor_id
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Actor getActor(@PathVariable Integer id)
+    {
+        Integer actorId = id.intValue();
+        return actorRepository.findActorByActorId(actorId);
+    }
+
+    // GET - Films (a los que pertenece) por actor_id
+    @RequestMapping(value = "/{id}/films", method = RequestMethod.GET)
+    @ResponseBody
+    public Set<Film> findFilms(@PathVariable("id") Integer id) {
+        return actorRepository.findActorByActorId(id).getFilms();
     }
 
     @RequestMapping(method = RequestMethod.POST)
