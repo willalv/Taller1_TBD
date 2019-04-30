@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-
+@CrossOrigin(origins = "http://localhost:8082")
 @RestController
 @RequestMapping("/films")
 public class FilmService {

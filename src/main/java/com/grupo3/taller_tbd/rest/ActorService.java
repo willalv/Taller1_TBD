@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.grupo3.taller_tbd.entities.Actor;
 import com.grupo3.taller_tbd.repository.ActorRepository;
 import java.util.Set;
 import java.sql.Timestamp;
 
+@CrossOrigin(origins = "http://localhost:8082")
 @RestController
 @RequestMapping("/actors")
 public class ActorService {
